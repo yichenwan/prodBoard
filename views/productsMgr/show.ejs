@@ -1,0 +1,28 @@
+<% include ../partials/header %>
+    <div class="row">
+    	<div class="col-md-1">
+    	</div>
+    	<div class="col-md-10">     	
+			<% if (prodMgrs) { %>
+			<div class="card">
+			  <div class="card-header">
+			    Product Managers
+			  </div>
+			  <ul class="list-group list-group-flush">
+			  	<% prodMgrs.forEach((prodMgr) => { %>
+			  	<li class="list-group-item">
+			  		<strong><%= prodMgr.firstName %><strong>
+			  		<strong><%= prodMgr.lastName %><strong>
+			  		<span class="float-right">
+			  		    <a href="/productsMgrs/<%= prodMgr.mgrId %>" class="btn btn-outline-success btn-sm">More info</a>			
+			  		</span>			  	
+			  	</li>
+			   	<% }) %>  	
+			  </ul>
+			</div>		
+			<% } %>
+		</div>
+    	</div> 
+    	<div class="col-md-1">
+    	</div> 		
+<% include ../partials/footer %>

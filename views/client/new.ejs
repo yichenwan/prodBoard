@@ -1,0 +1,19 @@
+<% include ../partials/header %>
+<form action="/clients" method="POST">
+	<% if (productId) { %>
+	<input type="hidden" name="productId" value="<%= productId%>">
+	<% } %>
+    <label for="name">name</label>	
+	<input id="name" type='text' name="name">
+	<label for="attribute">attribute</label>
+
+	<select id="attribute" name="attribute">
+	    <option value="" disabled>--Please choose an option--</option>
+	    <option value="company">company</option>
+	    <option value="general market">general market</option>
+	</select>
+    <label for="email">email</label>	
+	<input id = "email" type='email' name="email">
+	<button class="ml-1 btn btn-outline-primary btn-sm">Submit</button>	
+</form>
+<% include ../partials/footer %>

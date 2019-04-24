@@ -1,0 +1,16 @@
+.new-form {
+  width: 60%;
+  /*max-width: 330px;*/
+  padding: 15px;
+  margin: auto;
+}
+
+.client-form {
+  width: 100%;
+  padding: 15px;
+  margin: auto;
+}
+
+body {
+	background-color: lightgreen;
+}

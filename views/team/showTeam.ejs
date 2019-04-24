@@ -1,0 +1,44 @@
+<% include ../partials/header %>
+    <div class="row">
+    	<div class="col-md-1">
+    	</div>
+    	<div class="col-md-10"> 
+			<% if (team) { %>
+		    	<h1><%= team.name%></h1>
+		    	<h2><%= team.description%></h2>
+		    <% } %>    	
+			<% if (prods) { %>
+			<div class="card">		
+			  <div class="card-header">
+    			Products				  
+			  </div>
+			  <ul class="list-group list-group-flush">
+			  	<% prods.forEach((prod) => { %>
+			  	<li class="list-group-item">
+			  	    <span><%= prod.productId %></span>	  			  	
+			  	    <span><%= prod.name %></span>	
+			  	</li>
+			   	<% }) %>  	
+			  </ul>
+			</div>		
+			<% } %>		    
+			<% if (rds) { %>
+			<div class="card">
+			  <div class="card-header">
+			  	Rds
+			  </div>
+			  <ul class="list-group list-group-flush">
+			  	<% rds.forEach((rd) => { %>
+			  	<li class="list-group-item">
+			  	    <span><%= rd.firstName %></span>
+			  	    <span><%= rd.lastName %></span>
+			  	    <span><%= rd.email %></span>		  	
+			  	</li>
+			   	<% }) %>  	
+			  </ul>
+			</div>		
+			<% } %>
+    	</div> 
+    	<div class="col-md-1">
+    	</div>  			
+<% include ../partials/footer %>

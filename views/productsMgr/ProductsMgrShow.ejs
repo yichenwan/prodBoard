@@ -1,0 +1,41 @@
+<% include ../partials/header %>
+<div class="row my-2">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-8">
+	  <div class="card mb-3 border-0">
+	      <div class="row">
+	          <div class="col-md-8">
+	              <div class="card-block my-4 px-3 ">
+	                  <h4 class="card-title"><%= prodMgr.firstName%> <%= prodMgr.lastName%></h4>
+	                  <a href="<%= prodMgr.email%>">Email</a><br>                
+	              </div>
+	          </div>      
+	      </div>
+	  </div> 
+
+     <div class="blog-main">
+			<% if (prods) { %>
+			<div class="card">
+			  <div class="card-header">
+			    Products
+			  </div>
+			  <ul class="list-group list-group-flush">
+			  	<% prods.forEach((prod) => { %>
+			  	<li class="list-group-item">
+			  		<strong><%= prod.name %></strong>
+			  		<span class="text-muted ml-2"><%= moment(prod.deadline).format('YYYY-MM-DD') %></span>
+			  		<p class="float-right">
+			  		    <a href="#" class="btn btn-outline-success btn-sm">More info</a>			
+			  		</p>	 		
+			  	</li>
+			   	<% }) %>  	
+			  </ul>
+			</div>		
+			<% } %>
+      </div><!-- /.blog-main -->    
+  </div>
+  <div class="col-md-2">
+  </div>	 
+</div>       
+<% include ../partials/footer %>

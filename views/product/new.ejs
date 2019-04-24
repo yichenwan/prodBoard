@@ -1,0 +1,39 @@
+<% include ../partials/header %>
+<form class="new-form" action="/products" method="POST">
+	<div class="form-group">
+	    <label for="name">name</label>	
+		<input class="form-control" id="name" type='text' name="name">		
+	</div>
+	<div class="form-group">
+	    <label for="description">description</label>	
+		<textarea class="form-control" id = "description" name="description" rows="5" cols="33"></textarea>		
+	</div>
+	<div class="form-group">
+	    <label for="deadline">deadline</label>	
+		<input class="form-control" id = "deadline" type='text' name="deadline" placeholder="yyyy-mm-dd">
+	</div>
+	<div class="form-group">
+	    <label for="completed">completed</label>	
+		<div class="form-check">			    
+		    <input class="form-check-input" type="radio" name="complete" value="1">	 
+			<label class="form-check-label" for="yes">yes</label>    
+		</div>
+		<div class="form-check">			
+		    <input class="form-check-input" type="radio" name="complete" value="0">	
+	    	<label class="form-check-label" for="no">no</label>
+		</div>	    	  	
+	</div>	
+	<div class="form-group">
+		<label>Select a product Manager:</label>		
+		<div class="form-check">
+			<% prodMgrs.forEach((prodMgr) => { %>
+				<div>
+				  <input class="form-check-input" type="radio" id="mgr<%= prodMgr.mgrId%>" name="mgrId" value="<%= prodMgr.mgrId%>">
+				  <label class="form-check-label" for="mgr<%= prodMgr.mgrId%>"><%= prodMgr.firstName%> <%= prodMgr.lastName%></label>
+				</div>		
+			<% }) %>		
+		</div>
+	</div>
+	<button class="ml-1 btn btn-outline-primary btn-sm">NEXT</button>
+</form>
+<% include ../partials/footer %>

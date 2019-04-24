@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>productManager</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/css/productMgr.css">
+</head>
+<body>
+<div class="container">
+	<h1 class="text-center mb-2">Product Management</h1>	
+	<ul class="nav nav-tabs mb-3">
+	  <li class="nav-item">
+		<% if (prods) { %>	  	
+	    	<a class="nav-link active" href="/">Products</a>  
+	    <% } else { %>	    	
+	      <a class="nav-link " href="/">Products</a> 
+    	<% } %>	    
+	  </li>
+	  <li class="nav-item">
+		<% if (prodMgrs) { %>	  	
+	    	<a class="nav-link active" href="/productsMgrs/ ">PMs</a>
+	    <% } else { %>
+			<a class="nav-link" href="/productsMgrs/">PMs</a>
+	    <% } %>
+	  </li>
+	  <li class="nav-item">
+		<% if (teams) { %>	  	
+	    <a class="nav-link active" href="/teams">Teams</a>
+	    <% } else { %>	    
+	    <a class="nav-link" href="/teams">Teams</a>	    
+	    <% } %>
+	  </li>	
+	   <li class="nav-item">
+		<% if (clients) { %>		   	
+	    <a class="nav-link active" href="/clients">Clients</a>
+	    <% } else { %>
+	    <a class="nav-link" href="/clients">Clients</a>	    
+	    <% } %>  	    
+	  </li>
+	  </li>	
+	   <li class="nav-item">
+		<% if (orders) { %>		   	
+	    <a class="nav-link active" href="/SellTo">Order</a>
+	    <% } else { %>
+	    <a class="nav-link" href="/SellTo">Order</a>	    
+	    <% } %>  	    
+	  </li>	  
+	</ul>	
+</div>
+<div class="container">

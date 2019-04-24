@@ -1,0 +1,17 @@
+<% include ../partials/header %>
+<p class="new-form">Select a responsible teams:</p>
+<form  class="new-form" action="/responsibleBy" method="POST">
+	<div class="class="form-group form-check"> 
+		<input type="hidden" name="productId" value="<%= productId%>">	
+			<% teams.forEach((team) => { %>
+			<div class="form-check">		
+				<input class="form-check-input" type="checkbox" name= "teamIds" value="<%= team.teamId%>">
+		    	<label class="form-check-label"><%= team.name%></label>				
+			</div>	    	
+			<% }) %>		
+	</div>
+
+	<button class="mt-1 btn btn-outline-primary btn-sm">Add</button>   	
+</form>	
+
+<% include ../partials/footer %>

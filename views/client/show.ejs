@@ -1,0 +1,31 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+    	<div class="col-md-1">
+    </div>
+    <div class="col-md-10"> 
+
+	<a href="/clients/new" class="ml-1 mb-2 btn btn-outline-primary btn-sm">Add Client</a>    
+		<% if (clients) { %>
+		<div class="card">
+		  <div class="card-header">
+		    Clients
+		  </div>
+		  <ul class="list-group list-group-flush">
+		  	<% clients.forEach((client) => { %>
+		  	<li class="list-group-item">
+		  		<span><%= client.name %></span>
+		  		<span><%= client.attribute %></span>
+		  		<span><%= client.email %></span>
+		  		<span class="float-right">		
+		  		</span>			  	
+		  	</li>
+		   	<% }) %>  	
+		  </ul>
+		</div>		
+		<% } %>
+	</div>
+	<div class="col-md-1">
+	</div>	
+</div>
+<% include ../partials/footer %>

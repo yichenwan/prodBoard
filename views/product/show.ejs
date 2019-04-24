@@ -1,0 +1,62 @@
+<% include ../partials/header %>
+    <div class="row">
+    	<div class="col-md-1">
+    	</div>
+    	<div class="col-md-10"> 
+		    <form class="mb-3" action="/products" method="GET">
+					<label for="type-select">The state of projects:</label>
+					<select id="type-select" name="state">
+						<% if (!state) { %>
+							<option value="" selected="selected" disabled>--Please choose an option--</option>
+						<% } else { %>
+					        <option value="" disabled>--Please choose an option--</option>				
+						<% } %>
+						<% if (state === 'ongoing') { %>
+						  <option value="on-going" selected="selected">ongoing</option>		
+						<% } else { %>
+					        <option value="ongoing">ongoing</option>			
+						<% } %>	
+						<% if (state === 'compeleted') { %>							
+					    	<option value="compeleted" selected="selected">compeleted</option>
+						<% } else { %>		
+							<option value="compeleted">compeleted</option>				
+						<% } %>		
+						<% if (state === 'delayed') { %>									    
+					    	<option value="delayed" selected="selected">delayed</option>
+						<% } else { %>	
+					    	<option value="delayed">delayed</option>					
+						<% } %>								    
+					</select>   
+				<button class="ml-1 btn btn-outline-primary btn-sm">Submit</button>
+		    </form>
+
+		    <a href="/products/new" class="ml-1 mb-2 btn btn-outline-primary btn-sm">Add Product</a>
+
+			<% if (prods) { %>
+			<div class="card">
+			  <div class="card-header">
+			    Products
+			  </div>
+			  <ul class="list-group list-group-flush">
+			  	<% prods.forEach((prod) => { %>
+			  	<li class="list-group-item">
+			  		<strong><%= prod.name %></strong>
+			  		<span class="text-muted ml-2"><%= moment(prod.deadline).format('YYYY-MM-DD') %></span>
+			  		<p class="float-right">
+			  			<a href="/products/<%= prod.productId%>/edit/" class="btn btn-outline-primary btn-sm">Edit</a>	
+			  			<a href="/sellTo/new?productId=<%= prod.productId%>" class="btn btn-outline-primary btn-sm">Add Order</a>			
+			  		</p>	
+			  		<p>
+			  			<span>Prodct Manager: </span>
+			  			<a href="/productsMgrs/<%= prod.mgrId %>"><%= prod.firstName %></a>			  			
+			  		</p>  		
+			  	</li>
+			   	<% }) %>  	
+			  </ul>
+			</div>		
+			<% } %>
+    	</div> 
+    	<div class="col-md-1">
+    	</div>  		
+    </div>
+<% include ../partials/footer %>

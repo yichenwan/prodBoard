@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+    <div class="row">
+    	<div class="col-md-1">
+    	</div>
+    	<div class="col-md-10"> 
+			<% if (teams) { %>
+			<div class="card">
+			  <div class="card-header">
+			    Teams
+			  </div>
+			  <ul class="list-group list-group-flush">
+			  	<% teams.forEach((team) => { %>
+			  	<li class="list-group-item">
+			  	    <span><%= team.name %></span>
+			  		<span class="float-right">
+			  		    <a href="/teams/<%= team.teamId%>" class="btn btn-outline-success btn-sm">More info</a>			
+			  		</span>			  	
+			  	</li>
+			   	<% }) %>  	
+			  </ul>
+			</div>		
+			<% } %>
+    	</div> 
+    	<div class="col-md-1">
+    	</div>  			
+<% include ../partials/footer %>
