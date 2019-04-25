@@ -1,41 +1,34 @@
 <% include ../partials/header %>
-<div class="row my-2">
-  <div class="col-md-2">
-  </div>
-  <div class="col-md-8">
-	  <div class="card mb-3 border-0">
-	      <div class="row">
-	          <div class="col-md-8">
-	              <div class="card-block my-4 px-3 ">
-	                  <h4 class="card-title"><%= prodMgr.firstName%> <%= prodMgr.lastName%></h4>
-	                  <a href="<%= prodMgr.email%>">Email</a><br>                
-	              </div>
-	          </div>      
-	      </div>
-	  </div> 
+     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2"><%= prodMgr.firstName%> <%= prodMgr.lastName%></h1>
 
-     <div class="blog-main">
-			<% if (prods) { %>
-			<div class="card">
-			  <div class="card-header">
-			    Products
-			  </div>
-			  <ul class="list-group list-group-flush">
-			  	<% prods.forEach((prod) => { %>
-			  	<li class="list-group-item">
-			  		<strong><%= prod.name %></strong>
-			  		<span class="text-muted ml-2"><%= moment(prod.deadline).format('YYYY-MM-DD') %></span>
-			  		<p class="float-right">
-			  		    <a href="#" class="btn btn-outline-success btn-sm">More info</a>			
-			  		</p>	 		
-			  	</li>
-			   	<% }) %>  	
-			  </ul>
-			</div>		
-			<% } %>
-      </div><!-- /.blog-main -->    
-  </div>
-  <div class="col-md-2">
-  </div>	 
-</div>       
+        </div>
+        <h2>Responsible Products</h2>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>productId</th>
+                <th>name</th>
+                <th>deadline</th>
+                <th>completed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (prods) { %>  
+                <% prods.forEach((prod) => { %>            
+                  <tr>
+                    <td><%= prod.productId %></td>
+                    <td><%= prod.name %></td>
+                    <td><%= moment(prod.deadline).format('YYYY-MM-DD') %></td>
+                    <td><%= prod.complete %></td>
+                  </tr>
+                <% }) %>  
+              <% } %>                           
+            </tbody>
+          </table>
+      </main>
+    </div>
+  </div>      
 <% include ../partials/footer %>

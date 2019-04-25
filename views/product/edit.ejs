@@ -1,56 +1,63 @@
 <% include ../partials/header %>
-<form action="/products/<%= prod.productId%>?_method=PUT" method="POST">
-	<div class="form-group">
-	    <label for="name">name</label>	
-		<input class="form-control" id="name" type='text' name="name" value="<%=prod.name %>">		
-	</div>
-	<div class="form-group">
-	    <label for="description">description</label>	
-		<textarea class="form-control" id = "description" name="description" rows="5" cols="33"><%= prod.description%></textarea>		
-	</div>
-	<div class="form-group">
-	    <label for="deadline">deadline</label>	
-		<input class="form-control" id = "deadline" type='text' name="deadline" placeholder="yyyy-mm-dd" value="<%=moment(prod.deadline).format('YYYY-MM-DD') %>"> 
-	</div>
-	<div class="form-group">
-		<% if (prod.complete === 0) {  %>				
-		    <label for="completed">completed</label>	
-			<div class="form-check">			    
-			    <input class="form-check-input" type="radio" name="complete" value="1">	 
-				<label class="form-check-label" for="yes">yes</label>    
-			</div>
-			<div class="form-check">
-		    	<input class="form-check-input" type="radio" name="complete" value="0" checked>	
-	    		<label class="form-check-label" for="no">no</label>	
-			</div>	 
-		<% } else { %>	
-		    <label for="completed">completed</label>	
-			<div class="form-check">			    
-			    <input class="form-check-input" type="radio" name="complete" value="1" checked>	 
-				<label class="form-check-label" for="yes">yes</label>    
-			</div>
-			<div class="form-check">
-			    	<input class="form-check-input" type="radio" name="complete" value="0">	
-		    		<label class="form-check-label" for="no">no</label>  		
-			</div>		
-		<% } %>						   	  	
-	</div>	
-	
-	<div class="form-group">
-		<label>Select a product Manager:</label>		
-		<div class="form-check">
-			<% prodMgrs.forEach((prodMgr) => { %>
-				<div>
-				  <% if (prod.mgrId === prodMgr.mgrId) {  %>
-				  	<input class="form-check-input" type="radio" id="mgr<%= prodMgr.mgrId%>" name="mgrId" value="<%= prodMgr.mgrId%>" checked>					  
-				  <% } else { %>
-				  	<input class="form-check-input" type="radio" id="mgr<%= prodMgr.mgrId%>" name="mgrId" value="<%= prodMgr.mgrId%>">				  
-				  <% } %>
-				  <label class="form-check-label" for="mgr<%= prodMgr.mgrId%>"><%= prodMgr.firstName%> <%= prodMgr.lastName%></label>
-				</div>		
-			<% }) %>		
-		</div>
-	</div>
-	<button class="ml-1 btn btn-outline-primary btn-sm">Update</button>	
-</form>	
+     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Edit Product</h1>
+        </div>
+			<form class="new-form" action="/products/<%= prod.productId%>?_method=PUT" method="POST">
+				<div class="form-group">
+				    <label for="name">name</label>	
+					<input class="form-control" id="name" type='text' name="name" value="<%=prod.name %>">		
+				</div>
+				<div class="form-group">
+				    <label for="description">description</label>	
+					<textarea class="form-control" id = "description" name="description" rows="5" cols="33"><%= prod.description%></textarea>		
+				</div>
+				<div class="form-group">
+				    <label for="deadline">deadline</label>	
+					<input class="form-control" id = "deadline" type='text' name="deadline" placeholder="yyyy-mm-dd" value="<%=moment(prod.deadline).format('YYYY-MM-DD') %>"> 
+				</div>
+				<div class="form-group">
+					<% if (prod.complete === 0) {  %>				
+					    <label for="completed">completed</label>	
+						<div class="form-check">			    
+						    <input class="form-check-input" type="radio" name="complete" value="1">	 
+							<label class="form-check-label" for="yes">yes</label>    
+						</div>
+						<div class="form-check">
+					    	<input class="form-check-input" type="radio" name="complete" value="0" checked>	
+				    		<label class="form-check-label" for="no">no</label>	
+						</div>	 
+					<% } else { %>	
+					    <label for="completed">completed</label>	
+						<div class="form-check">			    
+						    <input class="form-check-input" type="radio" name="complete" value="1" checked>	 
+							<label class="form-check-label" for="yes">yes</label>    
+						</div>
+						<div class="form-check">
+						    	<input class="form-check-input" type="radio" name="complete" value="0">	
+					    		<label class="form-check-label" for="no">no</label>  		
+						</div>		
+					<% } %>						   	  	
+				</div>	
+				
+				<div class="form-group">
+					<label>Select a product Manager:</label>		
+					<div class="form-check">
+						<% prodMgrs.forEach((prodMgr) => { %>
+							<div>
+							  <% if (prod.mgrId === prodMgr.mgrId) {  %>
+							  	<input class="form-check-input" type="radio" id="mgr<%= prodMgr.mgrId%>" name="mgrId" value="<%= prodMgr.mgrId%>" checked>					  
+							  <% } else { %>
+							  	<input class="form-check-input" type="radio" id="mgr<%= prodMgr.mgrId%>" name="mgrId" value="<%= prodMgr.mgrId%>">				  
+							  <% } %>
+							  <label class="form-check-label" for="mgr<%= prodMgr.mgrId%>"><%= prodMgr.firstName%> <%= prodMgr.lastName%></label>
+							</div>		
+						<% }) %>		
+					</div>
+				</div>
+				<button class="ml-1 btn btn-outline-primary btn-sm">Update</button>	
+			</form>	
+      </main>
+    </div>
+  </div>
 <% include ../partials/footer %>

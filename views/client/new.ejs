@@ -1,19 +1,31 @@
 <% include ../partials/header %>
-<form action="/clients" method="POST">
-	<% if (productId) { %>
-	<input type="hidden" name="productId" value="<%= productId%>">
-	<% } %>
-    <label for="name">name</label>	
-	<input id="name" type='text' name="name">
-	<label for="attribute">attribute</label>
-
-	<select id="attribute" name="attribute">
-	    <option value="" disabled>--Please choose an option--</option>
-	    <option value="company">company</option>
-	    <option value="general market">general market</option>
-	</select>
-    <label for="email">email</label>	
-	<input id = "email" type='email' name="email">
-	<button class="ml-1 btn btn-outline-primary btn-sm">Submit</button>	
-</form>
+     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Add Client</h1>
+        </div>
+			<form class="new-form" action="/clients" method="POST">
+				<% if (productId) { %>
+				<input type="hidden" name="productId" value="<%= productId%>">
+				<% } %>
+				<div class="form-group">				
+			    	<label for="name">name</label>	
+					<input class="form-control" id="name" type='text' name="name">
+				</div>
+				<div class="form-group">				
+					<label for="attribute">attribute</label>
+					<select class="form-control" id="attribute" name="attribute">
+					    <option value="" disabled>--Please choose an option--</option>
+					    <option value="company">company</option>
+					    <option value="general market">general market</option>
+					</select>
+				</div>
+				<div class="form-group">				
+			    	<label for="email">email</label>	
+					<input class="form-control" id = "email" type='email' name="email">
+				</div>					
+				<button class="ml-1 btn btn-outline-primary btn-sm">Submit</button>	
+			</form>
+      </main>
+    </div>
+  </div>
 <% include ../partials/footer %>

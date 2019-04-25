@@ -1,44 +1,57 @@
 <% include ../partials/header %>
-    <div class="row">
-    	<div class="col-md-1">
-    	</div>
-    	<div class="col-md-10"> 
-			<% if (team) { %>
-		    	<h1><%= team.name%></h1>
-		    	<h2><%= team.description%></h2>
-		    <% } %>    	
-			<% if (prods) { %>
-			<div class="card">		
-			  <div class="card-header">
-    			Products				  
-			  </div>
-			  <ul class="list-group list-group-flush">
-			  	<% prods.forEach((prod) => { %>
-			  	<li class="list-group-item">
-			  	    <span><%= prod.productId %></span>	  			  	
-			  	    <span><%= prod.name %></span>	
-			  	</li>
-			   	<% }) %>  	
-			  </ul>
-			</div>		
-			<% } %>		    
-			<% if (rds) { %>
-			<div class="card">
-			  <div class="card-header">
-			  	Rds
-			  </div>
-			  <ul class="list-group list-group-flush">
-			  	<% rds.forEach((rd) => { %>
-			  	<li class="list-group-item">
-			  	    <span><%= rd.firstName %></span>
-			  	    <span><%= rd.lastName %></span>
-			  	    <span><%= rd.email %></span>		  	
-			  	</li>
-			   	<% }) %>  	
-			  </ul>
-			</div>		
-			<% } %>
-    	</div> 
-    	<div class="col-md-1">
-    	</div>  			
+     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2"><%= team.name%></h1>
+
+        </div>   	
+        <h2>Product</h2>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>productId</th>
+                <th>name</th>
+                <th>deadline</th>
+                <th>completed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (prods) { %>  
+                <% prods.forEach((prod) => { %>            
+                  <tr>
+                    <td><%= prod.productId %></td>
+                    <td><%= prod.name %></td>
+                    <td><%= moment(prod.deadline).format('YYYY-MM-DD') %></td>
+                    <td><%= prod.complete %></td>
+                  </tr>
+                <% }) %>  
+              <% } %>                           
+            </tbody>
+          </table>
+        <h2>Rds</h2>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>firstName</th>
+                <th>lastName</th>
+                <th>email</th>
+              </tr>
+            </thead>
+            <tbody>
+			<% if (rds) { %>             	
+              <% rds.forEach((rd) => { %>           
+                  <tr>
+                    <td><%= rd.firstName %></td>
+                    <td><%= rd.lastName %></td>
+                    <td><%= rd.email %></td>
+                  </tr>
+			   	<% }) %>  
+              <% } %>                           
+            </tbody>
+          </table>  
+        </div>        	     
+      </main>
+    </div>
+  </div>      				
 <% include ../partials/footer %>

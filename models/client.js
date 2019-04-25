@@ -17,7 +17,7 @@ module.exports = class Client {
   static deleteById(id) {'DELETE FROM clients WHERE clients.clientId = ?', [id]}
 
   static fetchAll() {
-    return db.execute('SELECT * FROM clients');
+    return db.execute('SELECT * FROM clients ORDER BY clients.clientId DESC');
   }
 
   static findById(id) {

@@ -22,7 +22,7 @@ app.use(function(req, res, next) {
  });
 app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
 
 createTables().then(() => {
 	// seedDB();
