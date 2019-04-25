@@ -33,11 +33,21 @@ module.exports = class Product {
     if (state === 'ongoing') {
       return db.execute('SELECT * FROM products JOIN productMgrs ON products.mgrId = productMgrs.mgrId WHERE deadline > now() AND complete = 0 ORDER BY deadline');      
     } else if (state === 'delayed') {
-      return db.execute('SELECT * FROM products JOIN productMgrs ON products.mgrId = productMgrs.mgrId WHERE deadline <= now() AND complete = 0');    
+      return db.execute('SELECT *  FROM products JOIN productMgrs ON products.mgrId = productMgrs.mgrId WHERE deadline <= now() AND complete = 0');    
     } else {
       return db.execute('SELECT * FROM products JOIN productMgrs ON products.mgrId = productMgrs.mgrId WHERE complete = 1');    
     }
   }  
+
+  static fetchNumByState(state) {
+    if (state === 'ongoing') {
+      return db.execute('SELECT COUNT(*) FROM products JOIN productMgrs ON products.mgrId = productMgrs.mgrId WHERE deadline > now() AND complete = 0');      
+    } else if (state === 'delayed') {
+      return db.execute('SELECT COUNT(*)  FROM products JOIN productMgrs ON products.mgrId = productMgrs.mgrId WHERE deadline <= now() AND complete = 0');    
+    } else {
+      return db.execute('SELECT COUNT(*) FROM products JOIN productMgrs ON products.mgrId = productMgrs.mgrId WHERE complete = 1');    
+    }
+  } 
 
   static findById(id) {
     return db.execute('SELECT * FROM products WHERE products.productId = ?', [id]);

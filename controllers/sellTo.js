@@ -4,9 +4,7 @@ const Client = require('../models/client');
 exports.getSellTo = (req, res, next) => {
   const state = req.query.state;
   if (state) {
-    SellTo.fetchByState(state).then(([orders]) => {        
-      console.log('state');    
-
+    SellTo.fetchByState(state).then(([orders]) => {          
       res.render('SellTo/show', {
         orders: orders,
         state: state
@@ -16,8 +14,7 @@ exports.getSellTo = (req, res, next) => {
     });   
 
   } else {
-    SellTo.fetchAll().then(([orders]) => {
-      console.log(orders);      
+    SellTo.fetchAll().then(([orders]) => {     
       res.render('SellTo/show', {
         orders: orders,
         state: state        

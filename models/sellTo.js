@@ -29,9 +29,9 @@ module.exports = class SellTo {
 
   static fetchByState(state) {
     if (state === 'product') {
-      return db.execute('SELECT sellTo.productId, name, COUNT(*) FROM sellTo JOIN products ON sellTo.productId = products.productId GROUP BY sellTo.productId');      
+      return db.execute('SELECT sellTo.productId, name, COUNT(*) FROM sellTo JOIN products ON sellTo.productId = products.productId GROUP BY sellTo.productId  ORDER BY COUNT(*) DESC');      
     } else if (state === 'client') {
-      return db.execute('SELECT sellTo.clientId, name, COUNT(*) FROM sellTo JOIN clients ON sellTo.clientId = clients.clientId GROUP BY sellTo.clientId');    
+      return db.execute('SELECT sellTo.clientId, name, COUNT(*) FROM sellTo JOIN clients ON sellTo.clientId = clients.clientId GROUP BY sellTo.clientId  ORDER BY COUNT(*) DESC');    
     }
   }   
 

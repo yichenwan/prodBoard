@@ -1,68 +1,94 @@
 <% include ../partials/header %>
-    <div class="row">
-    	<div class="col-md-1">
-    	</div>
-    	<div class="col-md-10"> 
-		    <form class="mb-3" action="/SellTo" method="GET">
-					<label for="type-select">The state of orders:</label>
-					<select id="type-select" name="state">
-						<% if (!state) { %>
-							<option value="" selected="selected" disabled>--Please choose an option--</option>
-						<% } else { %>
-					        <option value="" disabled>--Please choose an option--</option>				
-						<% } %>
-						<% if (state === 'product') { %>
-						  <option value="product" selected="selected">product</option>		
-						<% } else { %>
-					        <option value="product">product</option>			
-						<% } %>	
-						<% if (state === 'client') { %>							
-					    	<option value="client" selected="selected">client</option>
-						<% } else { %>		
-							<option value="client">client</option>				
-						<% } %>									    
-					</select>   
-				<button class="ml-1 btn btn-outline-primary btn-sm">Submit</button>
-		    </form>
+     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">prodBoard</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="dropdown">
+              <a class="btn btn-sm btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                state of Orders
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="/SellTo">all</a>
+                <a class="dropdown-item" href="/SellTo?state=product">product</a>
+                <a class="dropdown-item" href="/SellTo?state=client">client</a>
+              </div>
+            </div>               
+          </div>
+        </div>
 
-			<% if (orders) { %>
-			<div class="card">
-			  <div class="card-header">
-			    Orders
-			  </div>
-			  <ul class="list-group list-group-flush">
-			  	<% if (state === 'product') { %>
-				  	<% orders.forEach((order) => { %>
-				  	<li class="list-group-item">
-				  		<strong><%= order.productId %></strong>				  		
-				  		<strong><%= order.name %></strong>				  		
-				  		<strong><%= order['COUNT(*)'] %></strong>				  		
-				  	</li>
-				   	<% }) %>  				  	
-				<% } else if (state === 'client') { %>
-				  	<% orders.forEach((order) => { %>	
-				  	<li class="list-group-item">				  							  	
-				  		<strong><%= order.clientId %></strong>				  		
-				  		<strong><%= order.name %></strong>				  		
-				  		<strong><%= order['COUNT(*)'] %></strong>	
-				  	</li>				  		
-				   	<% }) %>  				  							
-				<% } else { %>	
-				  	<% orders.forEach((order) => { %>
-				  	<li class="list-group-item">
-				  		<strong><%= order.productName %></strong>	
-				  		<strong><%= order.clientName %></strong>	
-				  		<span><%= moment(order.startDate).format('YYYY-MM-DD') %></span>	
-				  		<span><%= moment(order.endDate).format('YYYY-MM-DD') %></span>			  		
-				  		<span><%= moment(order.createDate).format('YYYY-MM-DD') %></span>			  		
-				  	</li>
-				   	<% }) %>  					
-				<% } %>							  	
-			  </ul>
-			</div>		
-			<% } %>
-    	</div> 
-    	<div class="col-md-1">
-    	</div>  		
+        <% if (state) { %> 
+        <canvas class="my-4 w-100" id="orderProductChart" width="900" height="380"></canvas>
+        <% } %>
+        <h2>Order</h2>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr> 
+                <% if (!state) { %> 
+                  <th>productName</th>
+                  <th>clientName</th>
+                  <th>startDate</th>
+                  <th>endDate</th>
+                  <th>createDate</th>  
+                <% } else if (state === 'client') { %>         
+                  <th>clientId</th>
+                  <th>clientName</th>
+                  <th>count</th>                                         
+                <% } else { %>
+                  <th>productId</th>
+                  <th>productName</th>
+                  <th>count</th>
+                <% } %>
+              </tr>                                                          
+            </thead>
+            <tbody>
+              <% if (state === 'product') { %>  
+                <% orders.forEach((order) => { %>          
+                  <tr>
+                    <td><%= order.productId %></td>
+                    <td><%= order.name %></td>
+                    <td><%= order['COUNT(*)'] %></td>
+                  </tr>
+                <% }) %>   
+              <% } else if (state === 'client') { %>  
+                <% orders.forEach((order) => { %>          
+                  <tr>
+                    <td><%= order.clientId %></td>
+                    <td><%= order.name %></td>
+                    <td><%= order['COUNT(*)'] %></td>
+                  </tr>
+                <% }) %>    
+              <% } else { %>  
+                <% orders.forEach((order) => { %>          
+                  <tr>
+                    <td><%= order.productName %></td>
+                    <td><%= order.clientName %></td>
+                    <td><%= moment(order.startDate).format('YYYY-MM-DD') %></td>
+                    <td><%= moment(order.endDate).format('YYYY-MM-DD') %></td>
+                    <td><%= moment(order.createDate).format('YYYY-MM-DD') %></td>
+                  </tr>
+                <% }) %>  
+              <% } %>                                                   
+            </tbody>
+          </table>
+        </div>
+      </main>
     </div>
-<% include ../partials/footer %>
+  </div>
+  
+<% if (state === 'product') { %>    
+  <p id="orderData" style="display:none"><%= JSON.stringify(orders) %></p>
+  <p id="orderTitle"style="display:none">Trending products</p>  
+<% } else if (state === 'client') { %>
+  <p id="orderData"style="display:none"><%= JSON.stringify(orders) %></p>`  
+  <p id="orderTitle"style="display:none">Clients with highest amount of total purchases</p>
+<% } %>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+ <script src="/js/order.js"></script>
+</body>
+</html>

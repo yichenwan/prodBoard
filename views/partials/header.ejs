@@ -1,50 +1,88 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>productManager</title>
+  <title>prodBoard</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="/css/productMgr.css">
+  <link rel="stylesheet" type="text/css" href="css/prodboard.css">   
 </head>
 <body>
-<div class="container">
-	<h1 class="text-center mb-2">Product Management</h1>	
-	<ul class="nav nav-tabs mb-3">
-	  <li class="nav-item">
-		<% if (prods) { %>	  	
-	    	<a class="nav-link active" href="/">Products</a>  
-	    <% } else { %>	    	
-	      <a class="nav-link " href="/">Products</a> 
-    	<% } %>	    
-	  </li>
-	  <li class="nav-item">
-		<% if (prodMgrs) { %>	  	
-	    	<a class="nav-link active" href="/productsMgrs/ ">PMs</a>
-	    <% } else { %>
-			<a class="nav-link" href="/productsMgrs/">PMs</a>
-	    <% } %>
-	  </li>
-	  <li class="nav-item">
-		<% if (teams) { %>	  	
-	    <a class="nav-link active" href="/teams">Teams</a>
-	    <% } else { %>	    
-	    <a class="nav-link" href="/teams">Teams</a>	    
-	    <% } %>
-	  </li>	
-	   <li class="nav-item">
-		<% if (clients) { %>		   	
-	    <a class="nav-link active" href="/clients">Clients</a>
-	    <% } else { %>
-	    <a class="nav-link" href="/clients">Clients</a>	    
-	    <% } %>  	    
-	  </li>
-	  </li>	
-	   <li class="nav-item">
-		<% if (orders) { %>		   	
-	    <a class="nav-link active" href="/SellTo">Order</a>
-	    <% } else { %>
-	    <a class="nav-link" href="/SellTo">Order</a>	    
-	    <% } %>  	    
-	  </li>	  
-	</ul>	
-</div>
-<div class="container">
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
+  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="#">Sign out</a>
+    </li>
+  </ul>
+</nav>
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="/">
+                <span data-feather="home"></span>
+                prodboard <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/sellTo?state=product">
+                <span data-feather="file"></span>
+                Orders
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="users"></span>
+                Customers
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="bar-chart-2"></span>
+                Reports
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="layers"></span>
+                Integrations
+              </a>
+            </li>
+          </ul>
+
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Saved reports</span>
+            <a class="d-flex align-items-center text-muted" href="#">
+              <span data-feather="plus-circle"></span>
+            </a>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Current month
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Last quarter
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Social engagement
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Year-end sale
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
