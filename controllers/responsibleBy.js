@@ -2,7 +2,7 @@ const ResponsibleBy = require('../models/responsibleBy');
 const Team = require('../models/team');
 
 exports.addResponsibleBy = async (req, res, next) => {
-  if(typeof req.body.teamIds === "string") {
+  if(typeof req.body.ids === "string") {
     const responsibleBy = new ResponsibleBy(req.body.productId, req.body.teamIds);
     const [responsibleBys] = await responsibleBy.save();
   } else {
@@ -10,6 +10,9 @@ exports.addResponsibleBy = async (req, res, next) => {
       const responsibleBy = new ResponsibleBy(req.body.productId, teamId);
       const [responsibleBys] = await responsibleBy.save();
     });     
+  }
+  if (req.update) {
+    return res.redirect('/');
   }
   res.redirect(`/sellTo/new?productId=${req.body.productId}`);
 }
@@ -24,3 +27,29 @@ exports.newResponsibleBy = (req, res, next) => {
   	console.log(err);
   });
 };
+
+exports.editResponsibleBy = async (req, res, next) => {  
+  try {
+  const [teams] = await Team.fetchAll();
+  const [responsibles] = await ResponsibleBy.findByProductId(req.params.productId);
+    res.render('responsibleBy/edit', {
+      productId: req.params.productId,
+      teams: teams,
+      responsibles: responsibles
+    });
+  }
+  catch (err) {
+    console.log(err);
+  };
+};
+
+exports.deleteResponsibleBy = async (req, res, next) => { 
+  try {
+    const [responsibles] = await ResponsibleBy.deleteByProductId(req.params.productId);
+    req.update = true; 
+    next();
+
+  } catch {
+
+  }
+};  

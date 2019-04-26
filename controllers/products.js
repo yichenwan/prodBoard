@@ -82,7 +82,7 @@ exports.editProduct = async (req, res, next) => {
 
 exports.updateProduct = (req, res, next) => {
 	Product.updateById(req.params.productId, req.body).then(([prodcut]) => {
-		res.redirect('/');
+		res.redirect(`/responsibleBy/${req.params.productId}/edit`);
 	});
 
 }

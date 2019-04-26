@@ -29,4 +29,13 @@ module.exports = class ResponsibleBy {
     return db.execute('SELECT * FROM responsibleBy JOIN products ON responsibleBy.productId = products.productId WHERE responsibleBy.teamId = ?'
       , [teamId]);
   }  
+
+  static findByProductId(productId) {
+    return db.execute('SELECT * FROM responsibleBy JOIN teams ON responsibleBy.teamId = teams.teamId WHERE responsibleBy.productId = ?'
+      , [productId]);
+  }   
+
+ static deleteByProductId(productId) { return db.execute('DELETE FROM responsibleBy WHERE responsibleBy.productId = ?'
+      ,[productId])};
+
 };
