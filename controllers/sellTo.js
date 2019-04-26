@@ -54,20 +54,27 @@ exports.addSellTo = async (req, res, next) => {
   res.redirect(`/products`);  
 }
 
-exports.newSellTo = (req, res, next) => {	
-  Client.fetchAll().then(([clients]) => {
+exports.newSellTo = async (req, res, next) => {	
+  try {
+    const [clients] = await Client.fetchAll();
+    const [orders] = await SellTo.findByProductId(req.query.productId);
+    console.log(clients);
+    const filterClients = clients.filter((client) => {
+      return !orders.some((order) => {
+        return client.clientId === order.clientId; 
+      });
+    });
     res.render('SellTo/new', {
       productId: req.query.productId,
-      clients: clients
-    });
-  }).catch((err) => {
+      clients: filterClients
+    });     
+  }
+  catch (err) {
   	console.log(err);
-  });
+  };
 };
 
 exports.deleteSellTo = (req, res, next) => { 
-  console.log(req.params.productId);
-  console.log(req.params.clientId);
   SellTo.deleteById(req.params.productId, req.params.clientId).then(([sellTos]) => {
     res.redirect('/sellTo/delete');
   }).catch((err) => {

@@ -39,4 +39,9 @@ module.exports = class SellTo {
     return db.execute('SELECT * FROM sellTo WHERE products.prodcutId = ? AND clients.clientId = ?'
       , [productId, clientId]);
   }
+
+  static findByProductId(productId) {
+    return db.execute('SELECT * FROM sellTo WHERE sellTo.productId = ?'
+      , [productId]);
+  }  
 };
