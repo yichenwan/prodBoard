@@ -21,34 +21,69 @@
         <div class="sidebar-sticky">
           <ul class="nav flex-column">
             <li class="nav-item">
+            <% if (url === "/products" || url.split('?')[0] === "/products") { %>                    
               <a class="nav-link active" href="/">
                 <span data-feather="home"></span>
                 prodboard <span class="sr-only">(current)</span>
               </a>
+            <% } else { %>              
+              <a class="nav-link" href="/">
+                <span data-feather="home"></span>
+                prodboard <span class="sr-only">(current)</span>
+              </a>  
+            <% } %>                          
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/sellTo?state=product">
+            <% if (url === "/sellTo" || url.split('?')[0] === "/sellTo") { %>              
+              <a class="nav-link active" href="/sellTo?state=product">
                 <span data-feather="file"></span>
                 Orders
               </a>
+            <% } else { %>  
+              <a class="nav-link" href="/sellTo?state=product">
+                <span data-feather="file"></span>
+                Orders
+              </a>            
+            <% } %>                          
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/productsMgrs">
+            <% if (url === "/productsMgrs") { %>                   
+              <a class="nav-link active" href="/productsMgrs">
                 <span data-feather="users"></span>
                 Products Managers
               </a>
+            <% } else { %>  
+              <a class="nav-link" href="/productsMgrs">
+                <span data-feather="users"></span>
+                Products Managers
+              </a>            
+            <% } %>                              
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/teams">
-                <span data-feather="bar-chart-2"></span>
+            <% if (url === "/teams") { %>                 
+              <a class="nav-link active" href="/teams">
+                <span data-feather="users"></span>
                 Teams
               </a>
+            <% } else { %>  
+              <a class="nav-link" href="/teams">
+                <span data-feather="users"></span>
+                Teams
+              </a>            
+            <% } %>                             
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/clients">
-                <span data-feather="layers"></span>
+            <% if (url === "/clients") { %>                  
+              <a class="nav-link active" href="/clients">
+                <span data-feather="users"></span>
                 Clients
               </a>
+            <% } else { %>    
+              <a class="nav-link" href="/clients">
+                <span data-feather="users"></span>
+                Clients
+              </a>              
+            <% } %>                        
             </li>           
           </ul>
 
@@ -60,16 +95,30 @@
           </h6>
           <ul class="nav flex-column mb-2">
             <li class="nav-item">
-              <a class="nav-link" href="/products/new">
+            <% if (url === "/products/new") { %>                  
+              <a class="nav-link active" href="/products/new">
                 <span data-feather="file-text"></span>
                 Add Product
               </a>
+            <% } else { %>   
+              <a class="nav-link" href="/products/new">
+                <span data-feather="file-text"></span>
+                Add Product
+              </a>            
+            <% } %>                            
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/clients/new">
+              <% if (url === "/clients/new") { %>      
+              <a class="nav-link active" href="/clients/new">
                 <span data-feather="file-text"></span>
                 Add Client
               </a>
+            <% } else { %>               
+              <a class="nav-link" href="/clients/new">
+                <span data-feather="file-text"></span>
+                Add Client
+              </a>   
+            <% } %>                            
             </li>
           </ul>
         </div>

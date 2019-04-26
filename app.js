@@ -18,6 +18,7 @@ app.use(function(req, res, next) {
  	res.locals.state = null; 	
  	res.locals.moment = moment;
  	res.locals.orders = null;
+ 	res.locals.url = req.url;
  	next();
  });
 app.use(methodOverride("_method"));
