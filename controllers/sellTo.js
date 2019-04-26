@@ -36,14 +36,18 @@ exports.getDeletePage = (req, res, next) => {
 }
 
 exports.addSellTo = async (req, res, next) => {
-  if (typeof req.body.clientIds === "string") {
-    const id = req.body.clientIds - 1;    
-    const sellTo = new SellTo(req.body.productId, req.body.clientIds, req.body.startDates[id], req.body.endDates[id]);
+  if (typeof req.body.ids === "string") {
+    const ids = JSON.parse(req.body.ids);    
+    const clientId = ids[0];     
+    const id = ids[1];   
+    const sellTo = new SellTo(req.body.productId, clientId, req.body.startDates[id], req.body.endDates[id]);
     const [sellTos] = await sellTo.save();
   } else {
-    for (let i = 0; i < req.body.clientIds.length; i++) {
-      const id = req.body.clientIds[i];
-      const sellTo = new SellTo(req.body.productId, id, req.body.startDates[id - 1], req.body.endDates[id - 1]);
+    for (let i = 0; i < req.body.ids.length; i++) {
+      const ids = JSON.parse(req.body.ids[i]);     
+      const clientId = ids[0];     
+      const id = ids[1];         
+      const sellTo = new SellTo(req.body.productId, clientId, req.body.startDates[id], req.body.endDates[id]);
       const [sellTos] = await sellTo.save();      
     }    
   }

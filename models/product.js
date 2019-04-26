@@ -7,7 +7,7 @@ module.exports = class Product {
     this.description = description;
     this.deadline = deadline;
     this.complete = complete;
-    this.mgrId = mgrId,
+    this.mgrId = mgrId;
     this.createDate = moment(Date.now()).format('YYYY-MM-DDTHH:mm:ss');
   }
 

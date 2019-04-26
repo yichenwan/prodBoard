@@ -4,10 +4,10 @@ const moment = require('moment');
 module.exports = class SellTo {
   constructor(productId, clientId, startDate, endDate) {
     this.productId = productId;
-    this.clientId = clientId
-    this.startDate = startDate,
-    this.endDate = endDate,
-    this.createDate = moment(Date.now()).format('YYYY-MM-DDTHH:mm:ss')
+    this.clientId = clientId;
+    this.startDate = startDate;
+    this.endDate = endDate;
+    this.createDate = moment(Date.now()).format('YYYY-MM-DDTHH:mm:ss');   
   }
 
   save() {

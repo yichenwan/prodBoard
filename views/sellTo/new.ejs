@@ -5,15 +5,17 @@
         </div>
 			<form class="client-form" action="/SellTo" method="POST">
 				<input type="hidden" name="productId" value="<%= productId%>">
+				<% let rankId = 0 %>
 				<% clients.forEach((client) => { %>
-					<div>
-						<input type="checkbox" name= "clientIds" value="<%= client.clientId%>">  
+					<div>					
+						<input type="checkbox" name= "ids" value="<%= JSON.stringify([client.clientId, rankId])%>">  
 				    	<span><%= client.name%></span>			  	
 				    	<label for="startDate">startDate</label>	
 				    	<input id = "startDate" type="text" name= "startDates" placeholder="yyyy-mm-dd">
 				    	<label for="endDate">endDate</label>	    	
 				    	<input d = "endDate" type="text" name= "endDates" placeholder="yyyy-mm-dd">
 				    </div>
+				    <% rankId++ %>
 				<% }) %>	
 				<a href="/clients/new/?productId=<%= productId%>" class="mt-1 btn btn-outline-primary btn-sm">Add Client</a> 
 				<button class="ml-1 mt-1 btn btn-outline-primary btn-sm">Add</button>   	
