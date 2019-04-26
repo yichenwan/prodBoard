@@ -121,5 +121,39 @@
             <% } %>                            
             </li>
           </ul>
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>DELETE Data</span>
+            <a class="d-flex align-items-center text-muted" href="#">
+              <span data-feather="minus-circle"></span>
+            </a>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+            <% if (url === "/products/delete") { %>                  
+              <a class="nav-link active" href="/products/delete">
+                <span data-feather="file-text"></span>
+                Delete Product
+              </a>
+            <% } else { %>   
+              <a class="nav-link" href="/products/delete">
+                <span data-feather="file-text"></span>
+                Delete Product
+              </a>            
+            <% } %>                            
+            </li>
+            <li class="nav-item">
+              <% if (url === "/sellTo/delete") { %>      
+              <a class="nav-link active" href="/sellTo/delete">
+                <span data-feather="file-text"></span>
+                Delete Order
+              </a>
+            <% } else { %>               
+              <a class="nav-link" href="/sellTo/delete">
+                <span data-feather="file-text"></span>
+                Delete Order
+              </a>   
+            <% } %>                            
+            </li>
+          </ul>          
         </div>
       </nav>

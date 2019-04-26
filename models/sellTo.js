@@ -17,7 +17,7 @@ module.exports = class SellTo {
     );
   }
 
-  static deleteById(productId, clientId) { db.execute('DELETE FROM sellTo WHERE products.prodcutId = ? AND clients.clientId = ?'
+  static deleteById(productId, clientId) { return db.execute('DELETE FROM sellTo WHERE sellTo.productId = ? AND sellTo.clientId = ?'
       ,[productId, clientId])};
 
   static fetchAll() {

@@ -1,0 +1,42 @@
+<% include ../partials/header %>
+     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <h2>Order</h2>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr> 
+                  <th>productName</th>
+                  <th>clientName</th>
+                  <th>startDate</th>
+                  <th>endDate</th>
+                  <th>createDate</th>  
+              </tr>                                                          
+            </thead>
+            <tbody> 
+              <% orders.forEach((order) => { %>          
+                <tr>
+                  <td><%= order.productName %></td>
+                  <td><%= order.clientName %></td>
+                  <td><%= moment(order.startDate).format('YYYY-MM-DD') %></td>
+                  <td><%= moment(order.endDate).format('YYYY-MM-DD') %></td>
+                  <td><%= moment(order.createDate).format('YYYY-MM-DD') %></td>
+                  <td><form action = "/sellTo/products/<%= order.productId%>/clients/<%= order.clientId%>?_method=DELETE" method="POST">
+                    <button class="btn btn-outline-danger">Delete</button>
+                  </form></td>                    
+                </tr>  
+              <% }) %>                                                
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </div>
+  
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+ <script src="/js/order.js"></script>
+</body>
+</html>

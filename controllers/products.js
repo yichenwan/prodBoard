@@ -41,6 +41,21 @@ exports.getProducts = async (req, res, next) => {
   }
 };
 
+exports.getDeletePage = async (req, res, next) => {
+  	try {
+		const [products] = await Product.fetchAll();
+		const [ongoing] = await Product.fetchNumByState('ongoing');
+		const [compeleted] = await Product.fetchNumByState('compeleted');
+		const [delayed] = await Product.fetchNumByState('delayed');
+	    res.render('product/delete', {
+	      prods: products 
+	    });
+  	}
+	catch(err) {
+	  console.log(err);
+  	}
+};
+
 exports.addProduct = (req, res, next) => {
 	const product = new Product(req.body.name, req.body.description, req.body.deadline, 0,  req.body.mgrId);
 	product.save().then(([products]) => {
@@ -56,7 +71,7 @@ exports.newProduct = (req, res, next) => {
   });
 };
 
-exports.editProdcut = async (req, res, next) => {
+exports.editProduct = async (req, res, next) => {
 	const [product] = await Product.findById(req.params.productId);
 	const [productMgrs] = await ProductMgr.fetchAll();
 	res.render('product/edit', {
@@ -65,9 +80,16 @@ exports.editProdcut = async (req, res, next) => {
 	});
 }
 
-exports.updateProdcut = (req, res, next) => {
+exports.updateProduct = (req, res, next) => {
 	Product.updateById(req.params.productId, req.body).then(([prodcut]) => {
 		res.redirect('/');
+	});
+
+}
+
+exports.deleteProduct = (req, res, next) => {
+	Product.deleteById(req.params.productId).then(([prodcut]) => {
+		res.redirect('/products/delete');
 	});
 
 }

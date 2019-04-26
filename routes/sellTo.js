@@ -12,4 +12,9 @@ router.post('/', sellToController.addSellTo);
 
 router.get('/new', sellToController.newSellTo);
 
+router.get('/delete', sellToController.getDeletePage);
+
+router.delete('/products/:productId/clients/:clientId?', sellToController.deleteSellTo);
+
+
 module.exports = router;

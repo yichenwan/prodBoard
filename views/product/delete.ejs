@@ -1,28 +1,5 @@
 <% include ../partials/header %>
      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">prodBoard</h1>
-          <div class="btn-toolbar mb-2 mb-md-0">
-<!--             <div class="btn-group mr-2">
-              <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-            </div> -->  
-            <div class="dropdown">
-              <a class="btn btn-sm btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                state of Project
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="/products">all</a>
-                <a class="dropdown-item" href="/products?state=ongoing">ongoing</a>
-                <a class="dropdown-item" href="/products?state=compeleted">compeleted</a>
-                <a class="dropdown-item" href="/products?state=delayed">delayed</a>
-              </div>
-            </div>               
-          </div>
-        </div>
-
-        <canvas class="my-4 w-100" id="productChart" width="900" height="380"></canvas>
-
         <h2>Product</h2>
         <div class="table-responsive">
           <table class="table table-striped table-sm">
@@ -44,8 +21,9 @@
                     <td><%= moment(prod.deadline).format('YYYY-MM-DD') %></td>
                     <td><%= prod.complete %></td>
                     <td><%= prod.firstName %></td>
-                    <td><a href="/products/<%= prod.productId%>/edit/" class="btn btn-outline-primary btn-sm">Edit</a></td>
-                    <td><a href="/sellTo/new?productId=<%= prod.productId%>" class="btn btn-outline-primary btn-sm">Add Order</a></td>                  
+                    <td><form action = "/products/<%= prod.productId%>?_method=DELETE" method="POST">
+                      <button class="btn btn-outline-danger">Delete</button>
+                    </form></td>                    
                   </tr>
                 <% }) %>  
               <% } %>                           
@@ -55,9 +33,6 @@
       </main>
     </div>
   </div>
-<p id="On"style="display:none"><%= numOfOn %></p>`
-<p id="Com"style="display:none"><%= numOfCom %></p>`
-<p id="Delay"style="display:none"><%= numOfDelay %></p>`
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

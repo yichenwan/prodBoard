@@ -18,7 +18,8 @@ module.exports = class Product {
     );
   }
 
-  static deleteById(id) {'DELETE FROM products WHERE product.productId = ?', [id]}
+  static deleteById(id) {return db.execute('DELETE FROM products WHERE products.productId = ?'
+                        , [id])};
 
   static updateById(id, product) {return db.execute(`UPDATE products SET name = ?, description=?, 
                                    deadline=?, complete = ?,  mgrId = ?

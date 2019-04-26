@@ -12,8 +12,12 @@ router.post('/', productsController.addProduct);
 
 router.get('/new', productsController.newProduct);
 
-router.get('/:productId/edit', productsController.editProdcut);
+router.get('/:productId/edit', productsController.editProduct);
 
-router.put('/:productId', productsController.updateProdcut);
+router.put('/:productId', productsController.updateProduct);
+
+router.delete('/:productId', productsController.deleteProduct);
+
+router.get('/delete', productsController.getDeletePage);
 
 module.exports = router;

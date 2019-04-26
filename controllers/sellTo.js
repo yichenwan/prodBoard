@@ -25,6 +25,16 @@ exports.getSellTo = (req, res, next) => {
   }
 }
 
+exports.getDeletePage = (req, res, next) => {
+  SellTo.fetchAll().then(([orders]) => {     
+    res.render('SellTo/delete', {
+      orders: orders      
+    });
+  }).catch((err) => {
+    console.log(err);
+  });
+}
+
 exports.addSellTo = async (req, res, next) => {
   if (typeof req.body.clientIds === "string") {
     const id = req.body.clientIds - 1;    
@@ -48,5 +58,15 @@ exports.newSellTo = (req, res, next) => {
     });
   }).catch((err) => {
   	console.log(err);
+  });
+};
+
+exports.deleteSellTo = (req, res, next) => { 
+  console.log(req.params.productId);
+  console.log(req.params.clientId);
+  SellTo.deleteById(req.params.productId, req.params.clientId).then(([sellTos]) => {
+    res.redirect('/sellTo/delete');
+  }).catch((err) => {
+    console.log(err);
   });
 };
