@@ -9,7 +9,7 @@
 ![image](https://github.com/yichenwan/prodBoard/blob/master/prodBoard.png)
 
 ## Features of prodBoard
-* The basic actions(i.e. get, post, update and delete) on the products.
+* The basic actions(i.e. get, post, update and delete) on products.
 * The information about product managers, teams, clients, and rds.
 * The data visualization for the state of products and the information of orders.
 
