@@ -1,4 +1,4 @@
-const SellTo = require('../models/sellto');
+const SellTo = require('../models/sellTo');
 const Client = require('../models/client');
 
 exports.getSellTo = (req, res, next) => {
