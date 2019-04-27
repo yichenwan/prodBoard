@@ -112,7 +112,7 @@ const fakeresponsibleFor = async () => {
 		const randomP =  Math.floor(Math.random() * (numOfProdcut));
 		const randomT =  Math.floor(Math.random() * (numOfTeam));
 		const productId = products[randomP].productId;
-		const teamId = teams[randomT].teamId;
+		const teamId = teams[i].teamId;
 		const responsibleFor = new ResponsibleFor(productId, teamId);
 		try {
 			const [result] = await responsibleFor.save();	
@@ -129,9 +129,9 @@ const fakeSellTo = async () => {
 	const [clients] =  await Client.fetchAll();		
 	for (let i = 0; i < numOfClient; i++) {
 		const randomP =  Math.floor(Math.random() * (numOfProdcut));
-		const randomC =  Math.floor(Math.random() * (numOfClient));
+		// const randomC =  Math.floor(Math.random() * (numOfClient));
 		const productId = products[randomP].productId;
-		const clientId = clients[randomC].clientId;		
+		const clientId = clients[i].clientId;		
 		const cur = new Date();
 		const end = new Date();
 		end.setFullYear(end.getFullYear() + 1);
