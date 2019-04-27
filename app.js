@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 createTables().then(() => {
-	// seedDB();
+	seedDB();
 }).catch((err) => {
 	throw err;
 });
