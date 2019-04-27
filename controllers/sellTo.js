@@ -5,7 +5,7 @@ exports.getSellTo = (req, res, next) => {
   const state = req.query.state;
   if (state) {
     SellTo.fetchByState(state).then(([orders]) => {          
-      res.render('SellTo/show', {
+      res.render('sellTo/show', {
         orders: orders,
         state: state
       });
@@ -15,7 +15,7 @@ exports.getSellTo = (req, res, next) => {
 
   } else {
     SellTo.fetchAll().then(([orders]) => {     
-      res.render('SellTo/show', {
+      res.render('sellTo/show', {
         orders: orders,
         state: state        
       });
@@ -27,7 +27,7 @@ exports.getSellTo = (req, res, next) => {
 
 exports.getDeletePage = (req, res, next) => {
   SellTo.fetchAll().then(([orders]) => {     
-    res.render('SellTo/delete', {
+    res.render('sellTo/delete', {
       orders: orders      
     });
   }).catch((err) => {
@@ -64,7 +64,7 @@ exports.newSellTo = async (req, res, next) => {
         return client.clientId === order.clientId; 
       });
     });
-    res.render('SellTo/new', {
+    res.render('sellTo/new', {
       productId: req.query.productId,
       clients: filterClients
     });     
