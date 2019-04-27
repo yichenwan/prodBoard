@@ -1,5 +1,5 @@
 const Product = require('../models/product');
-const ProductMgr = require('../models/ProductMgr');
+const ProductMgr = require('../models/productMgr');
 const db = require('../util/database');
 
 exports.getProducts = async (req, res, next) => {
