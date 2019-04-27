@@ -40,7 +40,7 @@ const fakeProduct = async () => {
 		let random =  Math.floor(Math.random() * 3);
 		let product;
 		if (random === 0)
-		   product = new Product(faker.commerce.productName(), faker.commerce.productAdjective(), faker.date.future(), random,  mgrId);
+		   product = new Product(faker.commerce.productName(), faker.lorem.sentence(), faker.date.future(), random,  mgrId);
 		else if (random === 1)
 		   product = new Product(faker.commerce.productName(), faker.commerce.productAdjective(), faker.date.past(), random,  mgrId);
 		else
@@ -57,7 +57,7 @@ const fakeProduct = async () => {
 
 const fakeTeam = async () => {
 	for (let i = 0; i < numOfTeam; i++) {
-		let team = new Team(faker.commerce.department(), faker.name.jobArea());
+		let team = new Team(faker.commerce.department(), faker.lorem.sentence());
 		try {
 			const [result] = await team.save();	
 		    if (i === numOfTeam)	
