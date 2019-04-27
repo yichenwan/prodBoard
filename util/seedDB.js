@@ -35,8 +35,10 @@ const fakeProductMgrs = async () => {
 };
 
 const fakeProduct = async () => {
+	const [productMgrs] =  await ProductMgr.fetchAll();
 	for (let i = 0; i < numOfProdcut; i++) {
-		let mgrId = Math.floor(Math.random() * numOfProdcutMgr) + 1;
+		let id = Math.floor(Math.random() * numOfProdcutMgr);
+		let mgrId = productMgrs[id].mgrId;
 		let random =  Math.floor(Math.random() * 3);
 		let product;
 		if (random === 0)
@@ -69,8 +71,10 @@ const fakeTeam = async () => {
 };
 
 const fakeRd = async () => {
+	const [teams] =  await Team.fetchAll();	
 	for (let i = 0; i < numOfRd; i++) {
-		let teamId = Math.floor(Math.random() * numOfTeam) + 1;
+		let id = Math.floor(Math.random() * numOfTeam);
+		let teamId = teams[id].teamId;		
 		const firstName = faker.name.firstName();
 		let rd = new Rd(firstName, faker.name.lastName(), `${firstName}@${companyName}.com`,  teamId);
 		try {
@@ -102,9 +106,14 @@ const fakeClient = async () => {
 };
 
 const fakeresponsibleFor = async () => {
+	const [products] =  await Product.fetchAll();	
+	const [teams] =  await Team.fetchAll();	
 	for (let i = 0; i < numOfTeam; i++) {
-		const random =  Math.floor(Math.random() * (numOfProdcut)) + 1;
-		const responsibleFor = new ResponsibleFor(random, i + 1);
+		const randomP =  Math.floor(Math.random() * (numOfProdcut));
+		const randomT =  Math.floor(Math.random() * (numOfTeam));
+		const productId = products[randomP].productId;
+		const teamId = teams[randomT].teamId;
+		const responsibleFor = new ResponsibleFor(productId, teamId);
 		try {
 			const [result] = await responsibleFor.save();	
 		    if (i === numOfTeam)
@@ -116,16 +125,20 @@ const fakeresponsibleFor = async () => {
 }; 
 
 const fakeSellTo = async () => {
+	const [products] =  await Product.fetchAll();	
+	const [clients] =  await Client.fetchAll();		
 	for (let i = 0; i < numOfClient; i++) {
-		const randomIdx1 =  Math.floor(Math.random() * (numOfProdcut)) + 1;
-		// const randomIdx2 =  Math.floor(Math.random() * (numOfClient)) + 1;
+		const randomP =  Math.floor(Math.random() * (numOfProdcut));
+		const randomC =  Math.floor(Math.random() * (numOfClient));
+		const productId = products[randomP].productId;
+		const clientId = clients[randomC].clientId;		
 		const cur = new Date();
 		const end = new Date();
 		end.setFullYear(end.getFullYear() + 1);
 		const randomDate = setRandomDate(cur, end);
 		const startDate = moment(cur).format('YYYY-MM-DDTHH:mm:ss');
 		const endDate = moment(randomDate).format('YYYY-MM-DDTHH:mm:ss')
-		const sellTo = new SellTo(randomIdx1, i + 1, startDate,
+		const sellTo = new SellTo(productId, clientId, startDate,
 								  endDate);
 		try {
 			const [result] = await sellTo.save();	
