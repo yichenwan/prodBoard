@@ -35,7 +35,7 @@ const productRoutes = require('./routes/products');
 const productsMgrRoutes = require('./routes/productsMgrs');
 const teamsRoutes = require('./routes/teams');
 const clientsRoutes = require('./routes/clients');
-const responsibleByRoutes = require('./routes/responsibleBy');
+const responsibleForRoutes = require('./routes/responsibleFor');
 const sellToRoutes = require('./routes/sellTo');
 const indexRoutes = require('./routes/index');
 
@@ -44,7 +44,7 @@ app.use('/', indexRoutes);
 app.use('/productsMgrs', productsMgrRoutes);
 app.use('/teams', teamsRoutes);
 app.use('/clients', clientsRoutes);
-app.use('/responsibleBy', responsibleByRoutes);
+app.use('/responsibleFor', responsibleForRoutes);
 app.use('/sellTo', sellToRoutes);
 
 

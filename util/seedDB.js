@@ -5,7 +5,7 @@ const Product = require('../models/Product');
 const Team = require('../models/Team');
 const Rd = require('../models/Rd');
 const Client = require('../models/Client');
-const ResponsibleBy = require('../models/ResponsibleBy');
+const ResponsibleFor = require('../models/responsibleFor');
 const SellTo = require('../models/SellTo');
 const numOfProdcutMgr = 5;
 const numOfTeam = 7;
@@ -101,12 +101,12 @@ const fakeClient = async () => {
 	}
 };
 
-const fakeResponsibleBy = async () => {
+const fakeresponsibleFor = async () => {
 	for (let i = 0; i < numOfTeam; i++) {
 		const random =  Math.floor(Math.random() * (numOfProdcut)) + 1;
-		const responsibleBy = new ResponsibleBy(random, i + 1);
+		const responsibleFor = new ResponsibleFor(random, i + 1);
 		try {
-			const [result] = await responsibleBy.save();	
+			const [result] = await responsibleFor.save();	
 		    if (i === numOfTeam)
 				return result;		
 		} catch (err) {
@@ -143,7 +143,7 @@ const seedDB = async () => {
 	const resultTeam = await fakeTeam();
 	const resultRd = await fakeRd();
 	const resultClient = await fakeClient();
-	const resultResponsibleBy = await fakeResponsibleBy();
+	const resultresponsibleFor = await fakeresponsibleFor();
 	const resultSellTo = await fakeSellTo();
 	console.log('data populated!!');
 };

@@ -59,7 +59,7 @@ exports.getDeletePage = async (req, res, next) => {
 exports.addProduct = (req, res, next) => {
 	const product = new Product(req.body.name, req.body.description, req.body.deadline, 0,  req.body.mgrId);
 	product.save().then(([products]) => {
-		res.redirect(`/responsibleBy/new?productId=${products.insertId}`);
+		res.redirect(`/responsibleFor/new?productId=${products.insertId}`);
 	})
 }
 
@@ -82,7 +82,7 @@ exports.editProduct = async (req, res, next) => {
 
 exports.updateProduct = (req, res, next) => {
 	Product.updateById(req.params.productId, req.body).then(([prodcut]) => {
-		res.redirect(`/responsibleBy/${req.params.productId}/edit`);
+		res.redirect(`/responsibleFor/${req.params.productId}/edit`);
 	});
 
 }

@@ -1,6 +1,6 @@
 const Team = require('../models/team');
 const Rd = require('../models/rd');
-const ResponsibleBy = require('../models/responsibleBy');
+const responsibleFor = require('../models/responsibleFor');
 const db = require('../util/database');
 
 exports.getTeams = (req, res, next) => {
@@ -17,7 +17,7 @@ exports.getTeam = async (req, res, next) => {
   try {
 	  const [team] = await Team.findById(req.params.teamId);
 	  const [rds] = await Rd.findByTeamId(req.params.teamId); 
-    const [products] = await ResponsibleBy.findByteamId(req.params.teamId);
+    const [products] = await responsibleFor.findByteamId(req.params.teamId);
 	    res.render('team/showTeam', {
 	      team: team[0],
 	      rds: rds,

@@ -49,7 +49,7 @@ const sqlsForMToN = {
 	  FOREIGN KEY(productId) REFERENCES products(productId) ON DELETE CASCADE,
 	  FOREIGN KEY(clientId) REFERENCES clients(clientId) ON DELETE CASCADE
 	)`,
-	responsibleBy: `CREATE TABLE responsibleBy (
+	responsibleFor: `CREATE TABLE responsibleFor (
 	  productId INT,
 	  teamId INT,
 	  PRIMARY KEY(productId, teamId),
@@ -76,8 +76,8 @@ const createTables = async () => {
 	  const createteams = await createTable('teams', sqlsForEntity.teams);
 	  const createRds = await createTable('rds', sqlsForEntity.rds);
 	  const createSellTo = await createTable('sellTo', sqlsForMToN.sellTo);
-	  const createResponsibleBy = await createTable('responsibleBy', sqlsForMToN.responsibleBy);
-	  return createResponsibleBy;
+	  const createresponsibleFor = await createTable('responsibleFor', sqlsForMToN.responsibleFor);
+	  return createresponsibleFor;
 	} catch (err) {
 		throw err;
 	}
