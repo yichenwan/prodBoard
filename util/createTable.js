@@ -58,6 +58,12 @@ const sqlsForMToN = {
 	)`
 };
 
+const sqlForSeedDB = {
+	seedDB: `CREATE TABLE seedDB (
+    isSeed INT
+	);`
+}
+
 const createTable = async (tableName, sql) => {
 	const [existResults] = await db.execute(`show tables like '${tableName}'`);
 	if (existResults.length === 0) {
@@ -77,6 +83,7 @@ const createTables = async () => {
 	  const createRds = await createTable('rds', sqlsForEntity.rds);
 	  const createSellTo = await createTable('sellTo', sqlsForMToN.sellTo);
 	  const createresponsibleFor = await createTable('responsibleFor', sqlsForMToN.responsibleFor);
+	  const createSeedDB = await createTable('seedDB', sqlForSeedDB.seedDB);
 	  return createresponsibleFor;
 	} catch (err) {
 		throw err;

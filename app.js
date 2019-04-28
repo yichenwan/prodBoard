@@ -6,6 +6,7 @@ const seedDB = require('./util/seedDB');
 const app = express();
 const moment = require("moment");
 const methodOverride  = require("method-override");
+const db = require('./util/database');
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -26,7 +27,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 createTables().then(() => {
-	seedDB();
+	return (db.execute(`SELECT * FROM seedDB;`).then(([result]) => {
+		if (result.length === 0) {
+			seedDB();
+			db.execute(`INSERT INTO seedDB VALUES (1);`);				
+		}
+	}));
 }).catch((err) => {
 	throw err;
 });
