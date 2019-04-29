@@ -1,7 +1,7 @@
 # prodBoard
 
 ## Introduction
-* prodBoard is a web app which helps the company manage its products, human resource, and orders.
+* prodBoard is a web app which helps the company to manage its products, human resource, and orders.
 * This web app is mainly built with node.js, MySQL, and express framework.
 * The front-end template is from [1]. 
 ## Entity Relationship Diagram (ERD)
